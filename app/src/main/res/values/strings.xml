@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ticTacToe</string>
+    <string name="directions">Tap a square to claim it. X goes first.</string>
+    <string name="new_game">New Game</string>
+</resources>

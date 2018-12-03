@@ -136,7 +136,12 @@ public class MainActivity extends AppCompatActivity {
         else {
             mTurn = TicTacType.X;
         }
+
+        // Update GUI
         updateBoard();
+
+        // Check for a winner
+
     }
 
     public void updateBoard() {

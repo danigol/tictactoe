@@ -3,7 +3,10 @@ package daniellegolinsky.com.tictactoe;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import daniellegolinsky.com.tictactoe.ToeCell.TicTacType;
 
@@ -23,6 +26,12 @@ public class MainActivity extends AppCompatActivity {
 
     Button mNewGame;
 
+    TextView mScore;
+    int mXScore = 0;
+    int mOScore = 0;
+
+    Button mResetScore;
+
     TicTacType mTurn = TicTacType.X;
     TicTacType mWinner = TicTacType.UNSELECTED;
 
@@ -37,8 +46,13 @@ public class MainActivity extends AppCompatActivity {
 
         mTicTacToeBoard = new ToeBoard();
 
+        mScore = (TextView) findViewById(R.id.score);
+
         mNewGame = (Button) findViewById(R.id.new_game_button);
         mNewGame.setOnClickListener(v -> newGame());
+
+        mResetScore = (Button) findViewById(R.id.reset_score_button);
+        mResetScore.setOnClickListener(v -> resetScore());
 
         mOneOne = (Button) findViewById(R.id.one_one);
         mOneTwo = (Button) findViewById(R.id.one_two);
@@ -148,6 +162,9 @@ public class MainActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT));
             }
         });
+
+
+        updateBoard();
     }
 
     public void tapCell(int i) {
@@ -170,6 +187,14 @@ public class MainActivity extends AppCompatActivity {
                         mWinner.toString() + " wins!",
                         Toast.LENGTH_LONG));
                 someoneWon = true;
+
+                if (mWinner.equals(TicTacType.X)) {
+                    mXScore++;
+                }
+                else {
+                    mOScore++;
+                }
+                updateBoard();
             }
         }
         else {
@@ -190,6 +215,8 @@ public class MainActivity extends AppCompatActivity {
         mThreeOne.setText(mTicTacToeBoard.get(6).getCurrentValue().toString());
         mThreeTwo.setText(mTicTacToeBoard.get(7).getCurrentValue().toString());
         mThreeThree.setText(mTicTacToeBoard.get(8).getCurrentValue().toString());
+
+        mScore.setText(getString(R.string.score, mXScore, mOScore));
     }
 
     public void newGame() {
@@ -198,6 +225,7 @@ public class MainActivity extends AppCompatActivity {
         }
         someoneWon = false;
         mWinner = TicTacType.UNSELECTED;
+
         updateBoard();
 
         if (message != null) {
@@ -211,5 +239,11 @@ public class MainActivity extends AppCompatActivity {
         }
         message = t;
         message.show();
+    }
+
+    public void resetScore() {
+        mXScore = 0;
+        mOScore = 0;
+        updateBoard();
     }
 }

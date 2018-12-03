@@ -23,6 +23,15 @@
             android:textSize="20sp"
             android:layout_marginTop="4pt"
             />
+        <TextView
+            android:id="@+id/score"
+            android:text="@string/score"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:layout_marginTop="4pt"
+            />
 
         <LinearLayout
             android:id="@+id/row_one"
@@ -126,12 +135,25 @@
                 />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/new_game_button"
-            android:text="@string/new_game"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8pt"/>
+            android:weightSum="2">
+            <Button
+                android:id="@+id/new_game_button"
+                android:text="@string/new_game"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8pt"
+                android:layout_weight="1"/>
+            <Button
+                android:id="@+id/reset_score_button"
+                android:text="@string/reset_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+        </LinearLayout>
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

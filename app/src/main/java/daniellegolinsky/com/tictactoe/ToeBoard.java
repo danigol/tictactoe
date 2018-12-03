@@ -12,7 +12,6 @@ import daniellegolinsky.com.tictactoe.ToeCell.TicTacType;
 public class ToeBoard {
 
     private static final int TOTAL_MOVES = 9;
-    private static final int BOARD_SIZE = 9;
     private static final int WIDTH = 3;
     private static final int HEIGHT = 3;
 
@@ -68,13 +67,13 @@ public class ToeBoard {
     private TicTacType checkRows() {
         TicTacType winner = TicTacType.UNSELECTED;
         TicTacType cell;
-        for (int y = 0; y < HEIGHT; y++) {
-            cell = this.cells.get(y * WIDTH).getCurrentValue();
+        for (int y = 0; y < cells.size(); y += HEIGHT) {
+            cell = this.cells.get(y).getCurrentValue();
             if (cell.equals(TicTacType.UNSELECTED)) {
                 continue;
             }
-            TicTacType nextCell = this.cells.get(y * WIDTH + 1).getCurrentValue();
-            TicTacType lastCell = this.cells.get(y * WIDTH + 2).getCurrentValue();
+            TicTacType nextCell = this.cells.get(y + 1).getCurrentValue();
+            TicTacType lastCell = this.cells.get(y + 2).getCurrentValue();
 
             if (cell.equals(nextCell) && cell.equals(lastCell)) {
                 winner = cell;
@@ -89,12 +88,12 @@ public class ToeBoard {
         TicTacType winner = TicTacType.UNSELECTED;
         TicTacType cell;
         for (int x = 0; x < WIDTH; x++) {
-            cell = this.cells.get(x * HEIGHT).getCurrentValue();
+            cell = this.cells.get(x).getCurrentValue();
             if (cell.equals(TicTacType.UNSELECTED)) {
                 continue;
             }
-            TicTacType nextCell = this.cells.get(x + HEIGHT).getCurrentValue();
-            TicTacType lastCell = this.cells.get(x + (HEIGHT * 2)).getCurrentValue();
+            TicTacType nextCell = this.cells.get(x + WIDTH).getCurrentValue();
+            TicTacType lastCell = this.cells.get(x + (WIDTH * 2)).getCurrentValue();
 
             if (cell.equals(nextCell) && cell.equals(lastCell)) {
                 winner = cell;

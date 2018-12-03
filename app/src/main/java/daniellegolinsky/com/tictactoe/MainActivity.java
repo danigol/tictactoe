@@ -3,6 +3,7 @@ package daniellegolinsky.com.tictactoe;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import daniellegolinsky.com.tictactoe.ToeCell.TicTacType;
@@ -23,8 +24,16 @@ public class MainActivity extends AppCompatActivity {
 
     Button mNewGame;
 
+    TextView mScore;
+    int mXScore = 0;
+    int mOScore = 0;
+
+    Button mResetScore;
+
     TicTacType mTurn = TicTacType.X;
     TicTacType mWinner = TicTacType.UNSELECTED;
+
+    Toast message;
 
     boolean someoneWon = false;
 
@@ -35,8 +44,13 @@ public class MainActivity extends AppCompatActivity {
 
         mTicTacToeBoard = new ToeBoard();
 
+        mScore = (TextView) findViewById(R.id.score);
+
         mNewGame = (Button) findViewById(R.id.new_game_button);
         mNewGame.setOnClickListener(v -> newGame());
+
+        mResetScore = (Button) findViewById(R.id.reset_score_button);
+        mResetScore.setOnClickListener(v -> resetScore());
 
         mOneOne = (Button) findViewById(R.id.one_one);
         mOneTwo = (Button) findViewById(R.id.one_two);
@@ -53,7 +67,9 @@ public class MainActivity extends AppCompatActivity {
                 tapCell(0);
             }
             else {
-                Toast.makeText(this, "Please pick another cell.", Toast.LENGTH_SHORT).show();
+                toast(Toast.makeText(this,
+                        "Please pick another cell.",
+                        Toast.LENGTH_SHORT));
             }
         });
 
@@ -62,7 +78,9 @@ public class MainActivity extends AppCompatActivity {
                 tapCell(1);
             }
             else {
-                Toast.makeText(this, "Please pick another cell.", Toast.LENGTH_SHORT);
+                toast(Toast.makeText(this,
+                        "Please pick another cell.",
+                        Toast.LENGTH_SHORT));
             }
         });
 
@@ -71,7 +89,9 @@ public class MainActivity extends AppCompatActivity {
                 tapCell(2);
             }
             else {
-                Toast.makeText(this, "Please pick another cell.", Toast.LENGTH_SHORT).show();
+                toast(Toast.makeText(this,
+                        "Please pick another cell.",
+                        Toast.LENGTH_SHORT));
             }
         });
 
@@ -80,7 +100,9 @@ public class MainActivity extends AppCompatActivity {
                 tapCell(3);
             }
             else {
-                Toast.makeText(this, "Please pick another cell.", Toast.LENGTH_SHORT).show();
+                toast(Toast.makeText(this,
+                        "Please pick another cell.",
+                        Toast.LENGTH_SHORT));
             }
         });
 
@@ -89,7 +111,9 @@ public class MainActivity extends AppCompatActivity {
                 tapCell(4);
             }
             else {
-                Toast.makeText(this, "Please pick another cell.", Toast.LENGTH_SHORT).show();
+                toast(Toast.makeText(this,
+                        "Please pick another cell.",
+                        Toast.LENGTH_SHORT));
             }
         });
 
@@ -98,7 +122,9 @@ public class MainActivity extends AppCompatActivity {
                 tapCell(5);
             }
             else {
-                Toast.makeText(this, "Please pick another cell.", Toast.LENGTH_SHORT).show();
+                toast(Toast.makeText(this,
+                        "Please pick another cell.",
+                        Toast.LENGTH_SHORT));
             }
         });
 
@@ -107,7 +133,9 @@ public class MainActivity extends AppCompatActivity {
                 tapCell(6);
             }
             else {
-                Toast.makeText(this, "Please pick another cell.", Toast.LENGTH_SHORT).show();
+                toast(Toast.makeText(this,
+                        "Please pick another cell.",
+                        Toast.LENGTH_SHORT));
             }
         });
 
@@ -116,7 +144,9 @@ public class MainActivity extends AppCompatActivity {
                 tapCell(7);
             }
             else {
-                Toast.makeText(this, "Please pick another cell.", Toast.LENGTH_SHORT).show();
+                toast(Toast.makeText(this,
+                        "Please pick another cell.",
+                        Toast.LENGTH_SHORT));
             }
         });
 
@@ -125,9 +155,14 @@ public class MainActivity extends AppCompatActivity {
                 tapCell(8);
             }
             else {
-                Toast.makeText(this, "Please pick another cell.", Toast.LENGTH_SHORT).show();
+                toast(Toast.makeText(this,
+                        "Please pick another cell.",
+                        Toast.LENGTH_SHORT));
             }
         });
+
+
+        updateBoard();
     }
 
     public void tapCell(int i) {
@@ -146,16 +181,25 @@ public class MainActivity extends AppCompatActivity {
             // Check for a winner
             mWinner = mTicTacToeBoard.checkForWinner();
             if (!mWinner.equals(TicTacType.UNSELECTED)) {
-                Toast.makeText(this.getApplicationContext(),
+               toast(Toast.makeText(this.getApplicationContext(),
                         mWinner.toString() + " wins!",
-                        Toast.LENGTH_LONG).show();
+                        Toast.LENGTH_LONG));
                 someoneWon = true;
+
+                if (mWinner.equals(TicTacType.X)) {
+                    mXScore++;
+                }
+                else {
+                    mOScore++;
+                }
+                updateBoard();
             }
         }
         else {
-            Toast.makeText(this.getApplicationContext(),
+            message.cancel();
+            toast(Toast.makeText(this.getApplicationContext(),
                     "Start a new game, " + mWinner.toString() + " already won!",
-                    Toast.LENGTH_LONG).show();
+                    Toast.LENGTH_LONG));
         }
     }
 
@@ -169,6 +213,8 @@ public class MainActivity extends AppCompatActivity {
         mThreeOne.setText(mTicTacToeBoard.get(6).getCurrentValue().toString());
         mThreeTwo.setText(mTicTacToeBoard.get(7).getCurrentValue().toString());
         mThreeThree.setText(mTicTacToeBoard.get(8).getCurrentValue().toString());
+
+        mScore.setText(getString(R.string.score, mXScore, mOScore));
     }
 
     public void newGame() {
@@ -177,6 +223,25 @@ public class MainActivity extends AppCompatActivity {
         }
         someoneWon = false;
         mWinner = TicTacType.UNSELECTED;
+
+        updateBoard();
+
+        if (message != null) {
+            message.cancel();
+        }
+    }
+
+    public void toast(Toast t) {
+        if (message != null) {
+            message = null;
+        }
+        message = t;
+        message.show();
+    }
+
+    public void resetScore() {
+        mXScore = 0;
+        mOScore = 0;
         updateBoard();
     }
 }

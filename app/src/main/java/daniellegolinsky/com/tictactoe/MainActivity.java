@@ -6,8 +6,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
 import daniellegolinsky.com.tictactoe.ToeCell.TicTacType;
 
 public class MainActivity extends AppCompatActivity {

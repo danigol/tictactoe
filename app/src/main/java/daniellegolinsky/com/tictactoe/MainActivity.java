@@ -21,7 +21,9 @@ public class MainActivity extends AppCompatActivity {
     Button mThreeTwo;
     Button mThreeThree;
 
-   TicTacType mTurn = TicTacType.X;
+    Button mNewGame;
+
+    TicTacType mTurn = TicTacType.X;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mTicTacToeBoard = new ToeBoard();
+
+        mNewGame = (Button) findViewById(R.id.new_game_button);
+        mNewGame.setOnClickListener(v -> newGame());
 
         mOneOne = (Button) findViewById(R.id.one_one);
         mOneTwo = (Button) findViewById(R.id.one_two);
@@ -41,8 +46,7 @@ public class MainActivity extends AppCompatActivity {
         mThreeThree= (Button) findViewById(R.id.three_three);
 
         mOneOne.setOnClickListener(v -> {
-            if ("".equals(mOneOne.getText())) {
-                mOneOne.setText(mTurn.toString());
+            if (mTicTacToeBoard.get(0).getCurrentValue() == TicTacType.UNSELECTED) {
                 tapCell(0);
             }
             else {
@@ -51,8 +55,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         mOneTwo.setOnClickListener(v -> {
-            if ("".equals(mOneTwo.getText())) {
-                mOneTwo.setText(mTurn.toString());
+            if (mTicTacToeBoard.get(1).getCurrentValue() == TicTacType.UNSELECTED) {
                 tapCell(1);
             }
             else {
@@ -61,8 +64,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         mOneThree.setOnClickListener(v -> {
-            if ("".equals(mOneThree.getText())) {
-                mOneThree.setText(mTurn.toString());
+            if (mTicTacToeBoard.get(2).getCurrentValue() == TicTacType.UNSELECTED) {
                 tapCell(2);
             }
             else {
@@ -71,8 +73,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         mTwoOne.setOnClickListener(v -> {
-            if ("".equals(mTwoOne.getText())) {
-                mTwoOne.setText(mTurn.toString());
+            if (mTicTacToeBoard.get(3).getCurrentValue() == TicTacType.UNSELECTED) {
                 tapCell(3);
             }
             else {
@@ -81,8 +82,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         mTwoTwo.setOnClickListener(v -> {
-            if ("".equals(mTwoTwo.getText())) {
-                mTwoTwo.setText(mTurn.toString());
+            if (mTicTacToeBoard.get(4).getCurrentValue() == TicTacType.UNSELECTED) {
                 tapCell(4);
             }
             else {
@@ -91,8 +91,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         mTwoThree.setOnClickListener(v -> {
-            if ("".equals(mTwoThree.getText())) {
-                mTwoThree.setText(mTurn.toString());
+            if (mTicTacToeBoard.get(5).getCurrentValue() == TicTacType.UNSELECTED) {
                 tapCell(5);
             }
             else {
@@ -101,8 +100,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         mThreeOne.setOnClickListener(v -> {
-            if ("".equals(mThreeOne.getText())) {
-                mThreeOne.setText(mTurn.toString());
+            if (mTicTacToeBoard.get(6).getCurrentValue() == TicTacType.UNSELECTED) {
                 tapCell(6);
             }
             else {
@@ -111,8 +109,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         mThreeTwo.setOnClickListener(v -> {
-            if ("".equals(mThreeTwo.getText())) {
-                mThreeTwo.setText(mTurn.toString());
+            if (mTicTacToeBoard.get(7).getCurrentValue() == TicTacType.UNSELECTED) {
                 tapCell(7);
             }
             else {
@@ -121,20 +118,43 @@ public class MainActivity extends AppCompatActivity {
         });
 
         mThreeThree.setOnClickListener(v -> {
-            if ("".equals(mThreeThree.getText())) {
-                mThreeThree.setText(mTurn.toString());
+            if (mTicTacToeBoard.get(8).getCurrentValue() == TicTacType.UNSELECTED) {
                 tapCell(8);
             }
             else {
                 Toast.makeText(this, "Please pick another cell.", Toast.LENGTH_SHORT);
             }
         });
-
     }
 
     public void tapCell(int i) {
-        ToeCell tc = mTicTacToeBoard.get(i);
-        tc.setCurrentValue(mTurn);
-        mTurn.next();
+        mTicTacToeBoard.set(i, mTurn);
+
+        if (mTurn.equals(TicTacType.X)) {
+            mTurn = TicTacType.O;
+        }
+        else {
+            mTurn = TicTacType.X;
+        }
+        updateBoard();
+    }
+
+    public void updateBoard() {
+        mOneOne.setText(mTicTacToeBoard.get(0).getCurrentValue().toString());
+        mOneTwo.setText(mTicTacToeBoard.get(1).getCurrentValue().toString());
+        mOneThree.setText(mTicTacToeBoard.get(2).getCurrentValue().toString());
+        mTwoOne.setText(mTicTacToeBoard.get(3).getCurrentValue().toString());
+        mTwoTwo.setText(mTicTacToeBoard.get(4).getCurrentValue().toString());
+        mTwoThree.setText(mTicTacToeBoard.get(5).getCurrentValue().toString());
+        mThreeOne.setText(mTicTacToeBoard.get(6).getCurrentValue().toString());
+        mThreeTwo.setText(mTicTacToeBoard.get(7).getCurrentValue().toString());
+        mThreeThree.setText(mTicTacToeBoard.get(8).getCurrentValue().toString());
+    }
+
+    public void newGame() {
+        for (int i = 0; i < 9; i++) {
+            mTicTacToeBoard.get(i).setCurrentValue(TicTacType.UNSELECTED);
+        }
+        updateBoard();
     }
 }

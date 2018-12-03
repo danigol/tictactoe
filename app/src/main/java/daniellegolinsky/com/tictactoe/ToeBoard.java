@@ -21,4 +21,8 @@ public class ToeBoard {
     public ToeCell get(int i) {
         return cells.get(i);
     }
+
+    public void set(int cell, ToeCell.TicTacType type) {
+        cells.get(cell).setCurrentValue(type);
+    }
 }

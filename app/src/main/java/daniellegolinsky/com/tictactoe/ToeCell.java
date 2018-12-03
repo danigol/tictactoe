@@ -13,11 +13,6 @@ public class ToeCell {
 
         int value;
 
-        void next() {
-            value++;
-            value = value %2;
-        }
-
         public String toString() {
             if (value == 0) {
                 return "X";
@@ -41,22 +36,14 @@ public class ToeCell {
 
     public ToeCell(int p) {
         this.position = p;
-    }
-
-    public ToeCell(int p, TicTacType cv) {
-        this.position = p;
-        this.currentValue = cv;
-    }
-
-    public int getPosition() {
-        return this.position;
+        this.currentValue = TicTacType.UNSELECTED;
     }
 
     public TicTacType getCurrentValue() {
         return this.currentValue;
     }
 
-    public void setCurrentValue(TicTacType value) {
+    public void setCurrentValue(final TicTacType value) {
         this.currentValue = value;
     }
 }

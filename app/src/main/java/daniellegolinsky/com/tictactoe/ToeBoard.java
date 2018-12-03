@@ -3,12 +3,20 @@ package daniellegolinsky.com.tictactoe;
 import java.util.ArrayList;
 import java.util.List;
 
+import daniellegolinsky.com.tictactoe.ToeCell.TicTacType;
+
 /**
  * Created by Danielle on 12/2/18.
  */
 
 public class ToeBoard {
 
+    private static final int TOTAL_MOVES = 9;
+    private static final int BOARD_SIZE = 9;
+    private static final int WIDTH = 3;
+    private static final int HEIGHT = 3;
+
+    private int moves = 0;
     private List<ToeCell> cells;
 
     public ToeBoard() {
@@ -24,5 +32,95 @@ public class ToeBoard {
 
     public void set(int cell, ToeCell.TicTacType type) {
         cells.get(cell).setCurrentValue(type);
+        move();
+    }
+
+    private void move() {
+        this.moves++;
+    }
+
+    public int getMovesRemaining() {
+        return TOTAL_MOVES - moves;
+    }
+
+    public TicTacType checkForWinner() {
+        // 5 is the minimum number of moves anyway
+        if (this.moves > 4) {
+            TicTacType rows = checkRows();
+            if (!rows.equals(TicTacType.UNSELECTED)) {
+                return rows;
+            }
+
+            TicTacType columns = checkColumns();
+            if (!columns.equals(TicTacType.UNSELECTED)) {
+                return columns;
+            }
+
+            TicTacType diagonally = checkDiagonally();
+            if (!diagonally.equals(TicTacType.UNSELECTED)) {
+                return diagonally;
+            }
+        }
+
+        return TicTacType.UNSELECTED;
+    }
+
+    private TicTacType checkRows() {
+        TicTacType winner = TicTacType.UNSELECTED;
+        TicTacType cell;
+        for (int y = 0; y < HEIGHT; y++) {
+            cell = this.cells.get(y * WIDTH).getCurrentValue();
+            if (cell.equals(TicTacType.UNSELECTED)) {
+                continue;
+            }
+            TicTacType nextCell = this.cells.get(y * WIDTH + 1).getCurrentValue();
+            TicTacType lastCell = this.cells.get(y * WIDTH + 2).getCurrentValue();
+
+            if (cell.equals(nextCell) && cell.equals(lastCell)) {
+                winner = cell;
+                break;
+            }
+        }
+
+        return winner;
+    }
+
+    private TicTacType checkColumns() {
+        TicTacType winner = TicTacType.UNSELECTED;
+        TicTacType cell;
+        for (int x = 0; x < WIDTH; x++) {
+            cell = this.cells.get(x * HEIGHT).getCurrentValue();
+            if (cell.equals(TicTacType.UNSELECTED)) {
+                continue;
+            }
+            TicTacType nextCell = this.cells.get(x + HEIGHT).getCurrentValue();
+            TicTacType lastCell = this.cells.get(x + (HEIGHT * 2)).getCurrentValue();
+
+            if (cell.equals(nextCell) && cell.equals(lastCell)) {
+                winner = cell;
+                break;
+            }
+        }
+
+        return winner;
+    }
+
+    private TicTacType checkDiagonally() {
+
+        TicTacType topLeft = this.cells.get(0).getCurrentValue();
+        TicTacType center = this.cells.get(4).getCurrentValue(); // TODO Oh, I don't like constants like this.
+        TicTacType topRight = this.cells.get(WIDTH - 1).getCurrentValue();
+        TicTacType bottomLeft = this.cells.get(6).getCurrentValue();
+        TicTacType bottomRight = this.cells.get(8).getCurrentValue();
+
+        if (topLeft.equals(center) && topLeft.equals(bottomRight)) {
+            return topLeft;
+        }
+
+        if (topRight.equals(center) && topRight.equals(bottomLeft)) {
+            return topRight;
+        }
+
+        return TicTacType.UNSELECTED;
     }
 }

@@ -24,6 +24,9 @@ public class MainActivity extends AppCompatActivity {
     Button mNewGame;
 
     TicTacType mTurn = TicTacType.X;
+    TicTacType mWinner = TicTacType.UNSELECTED;
+
+    boolean someoneWon = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 tapCell(0);
             }
             else {
-                Toast.makeText(this, "Please pick another cell.", Toast.LENGTH_SHORT);
+                Toast.makeText(this, "Please pick another cell.", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -68,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 tapCell(2);
             }
             else {
-                Toast.makeText(this, "Please pick another cell.", Toast.LENGTH_SHORT);
+                Toast.makeText(this, "Please pick another cell.", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -77,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                 tapCell(3);
             }
             else {
-                Toast.makeText(this, "Please pick another cell.", Toast.LENGTH_SHORT);
+                Toast.makeText(this, "Please pick another cell.", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -86,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 tapCell(4);
             }
             else {
-                Toast.makeText(this, "Please pick another cell.", Toast.LENGTH_SHORT);
+                Toast.makeText(this, "Please pick another cell.", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -95,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                 tapCell(5);
             }
             else {
-                Toast.makeText(this, "Please pick another cell.", Toast.LENGTH_SHORT);
+                Toast.makeText(this, "Please pick another cell.", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -104,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
                 tapCell(6);
             }
             else {
-                Toast.makeText(this, "Please pick another cell.", Toast.LENGTH_SHORT);
+                Toast.makeText(this, "Please pick another cell.", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -113,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
                 tapCell(7);
             }
             else {
-                Toast.makeText(this, "Please pick another cell.", Toast.LENGTH_SHORT);
+                Toast.makeText(this, "Please pick another cell.", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -122,26 +125,38 @@ public class MainActivity extends AppCompatActivity {
                 tapCell(8);
             }
             else {
-                Toast.makeText(this, "Please pick another cell.", Toast.LENGTH_SHORT);
+                Toast.makeText(this, "Please pick another cell.", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     public void tapCell(int i) {
-        mTicTacToeBoard.set(i, mTurn);
+        if (!someoneWon) {
+            mTicTacToeBoard.set(i, mTurn);
 
-        if (mTurn.equals(TicTacType.X)) {
-            mTurn = TicTacType.O;
+            if (mTurn.equals(TicTacType.X)) {
+                mTurn = TicTacType.O;
+            } else {
+                mTurn = TicTacType.X;
+            }
+
+            // Update GUI
+            updateBoard();
+
+            // Check for a winner
+            mWinner = mTicTacToeBoard.checkForWinner();
+            if (!mWinner.equals(TicTacType.UNSELECTED)) {
+                Toast.makeText(this.getApplicationContext(),
+                        mWinner.toString() + " wins!",
+                        Toast.LENGTH_LONG).show();
+                someoneWon = true;
+            }
         }
         else {
-            mTurn = TicTacType.X;
+            Toast.makeText(this.getApplicationContext(),
+                    "Start a new game, " + mWinner.toString() + " already won!",
+                    Toast.LENGTH_LONG).show();
         }
-
-        // Update GUI
-        updateBoard();
-
-        // Check for a winner
-
     }
 
     public void updateBoard() {
@@ -160,6 +175,8 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < 9; i++) {
             mTicTacToeBoard.get(i).setCurrentValue(TicTacType.UNSELECTED);
         }
+        someoneWon = false;
+        mWinner = TicTacType.UNSELECTED;
         updateBoard();
     }
 }

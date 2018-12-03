@@ -36,6 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text=""
+                android:textSize="100sp"
                 />
             <Button
                 android:id="@+id/one_two"
@@ -43,6 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text=""
+                android:textSize="100sp"
                 />
             <Button
                 android:id="@+id/one_three"
@@ -50,6 +52,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text=""
+                android:textSize="100sp"
                 />
         </LinearLayout>
 
@@ -67,6 +70,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text=""
+                android:textSize="100sp"
                 />
             <Button
                 android:id="@+id/two_two"
@@ -74,6 +78,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text=""
+                android:textSize="100sp"
                 />
             <Button
                 android:id="@+id/two_three"
@@ -81,6 +86,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text=""
+                android:textSize="100sp"
                 />
         </LinearLayout>
 
@@ -98,6 +104,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text=""
+                android:textSize="100sp"
                 />
             <Button
                 android:id="@+id/three_two"
@@ -105,6 +112,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text=""
+                android:textSize="100sp"
                 />
             <Button
                 android:id="@+id/three_three"
@@ -112,6 +120,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text=""
+                android:textSize="100sp"
                 />
         </LinearLayout>
 

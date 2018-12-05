@@ -22,7 +22,7 @@ public class ToeBoard {
 
     public static ToeBoard instance() {
         if (instance == null) {
-            return new ToeBoard();
+            instance = new ToeBoard();
         }
         return instance;
     }

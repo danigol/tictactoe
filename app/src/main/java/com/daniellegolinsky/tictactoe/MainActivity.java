@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         mTwoThree = (Button) findViewById(R.id.two_three);
         mThreeOne = (Button) findViewById(R.id.three_one);
         mThreeTwo = (Button) findViewById(R.id.three_two);
-        mThreeThree= (Button) findViewById(R.id.three_three);
+        mThreeThree = (Button) findViewById(R.id.three_three);
 
         mOneOne.setOnClickListener(v -> {
             if (mTicTacToeBoard.get(0).getCurrentValue() == TicTacType.UNSELECTED) {

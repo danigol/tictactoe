@@ -1,9 +1,9 @@
-package daniellegolinsky.com.tictactoe;
+package com.daniellegolinsky.tictactoe;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import daniellegolinsky.com.tictactoe.ToeCell.TicTacType;
+import com.daniellegolinsky.tictactoe.ToeCell.TicTacType;
 
 /**
  * Created by Danielle on 12/2/18.

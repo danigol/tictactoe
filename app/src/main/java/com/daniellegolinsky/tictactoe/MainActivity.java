@@ -1,4 +1,4 @@
-package daniellegolinsky.com.tictactoe;
+package com.daniellegolinsky.tictactoe;
 
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import daniellegolinsky.com.tictactoe.ToeCell.TicTacType;
+import com.daniellegolinsky.tictactoe.ToeCell.TicTacType;
 
 public class MainActivity extends AppCompatActivity {
 

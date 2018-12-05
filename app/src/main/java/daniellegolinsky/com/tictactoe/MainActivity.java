@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTicTacToeBoard = new ToeBoard();
+        mTicTacToeBoard = ToeBoard.instance();
 
         mScore = (TextView) findViewById(R.id.score);
 
@@ -167,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void tapCell(int i) {
+        // Someone has not won yet or the game has tied
         if (!mSomeoneWon) {
             mTicTacToeBoard.set(i, mTurn);
 
@@ -194,6 +195,11 @@ public class MainActivity extends AppCompatActivity {
                     mOScore++;
                 }
                 updateBoard();
+            }
+            else if (mTicTacToeBoard.getMovesRemaining() == 0) {
+                toast(Toast.makeText(this.getApplicationContext(),
+                        "TIE!",
+                        Toast.LENGTH_LONG));
             }
         }
         else {
@@ -315,6 +321,8 @@ public class MainActivity extends AppCompatActivity {
         if (mToast != null) {
             mToast.cancel();
         }
+
+        mTicTacToeBoard.resetBoard();
     }
 
     /**

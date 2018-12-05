@@ -18,8 +18,17 @@ public class ToeBoard {
     private int moves = 0;
     private List<ToeCell> cells;
 
-    public ToeBoard() {
-        cells = new ArrayList<ToeCell>();
+    private static ToeBoard instance;
+
+    public static ToeBoard instance() {
+        if (instance == null) {
+            return new ToeBoard();
+        }
+        return instance;
+    }
+
+    private ToeBoard() {
+        cells = new ArrayList<>();
         for (int i = 0; i < 9; i++) {
             cells.add(new ToeCell(i));
         }
@@ -40,6 +49,10 @@ public class ToeBoard {
 
     public int getMovesRemaining() {
         return TOTAL_MOVES - moves;
+    }
+
+    public void resetBoard() {
+        this.moves = 0;
     }
 
     public TicTacType checkForWinner() {

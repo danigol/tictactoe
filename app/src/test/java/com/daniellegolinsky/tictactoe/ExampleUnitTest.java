@@ -1,4 +1,4 @@
-package daniellegolinsky.com.tictactoe;
+package com.daniellegolinsky.tictactoe;
 
 import org.junit.Test;
 

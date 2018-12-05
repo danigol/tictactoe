@@ -1,9 +1,9 @@
-package daniellegolinsky.com.tictactoe;
+package com.daniellegolinsky.tictactoe;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import daniellegolinsky.com.tictactoe.ToeCell.TicTacType;
+import com.daniellegolinsky.tictactoe.ToeCell.TicTacType;
 
 /**
  * Created by Danielle on 12/2/18.
@@ -18,8 +18,17 @@ public class ToeBoard {
     private int moves = 0;
     private List<ToeCell> cells;
 
-    public ToeBoard() {
-        cells = new ArrayList<ToeCell>();
+    private static ToeBoard instance;
+
+    public static ToeBoard instance() {
+        if (instance == null) {
+            instance = new ToeBoard();
+        }
+        return instance;
+    }
+
+    private ToeBoard() {
+        cells = new ArrayList<>();
         for (int i = 0; i < 9; i++) {
             cells.add(new ToeCell(i));
         }
@@ -40,6 +49,14 @@ public class ToeBoard {
 
     public int getMovesRemaining() {
         return TOTAL_MOVES - moves;
+    }
+
+    public void resetBoard() {
+        this.moves = 0;
+    }
+
+    public int boardSize() {
+        return this.cells.size();
     }
 
     public TicTacType checkForWinner() {

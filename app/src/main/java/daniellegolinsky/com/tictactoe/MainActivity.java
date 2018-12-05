@@ -1,5 +1,6 @@
 package daniellegolinsky.com.tictactoe;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
@@ -10,32 +11,32 @@ import daniellegolinsky.com.tictactoe.ToeCell.TicTacType;
 
 public class MainActivity extends AppCompatActivity {
 
-    ToeBoard mTicTacToeBoard;
+    private ToeBoard mTicTacToeBoard;
 
-    Button mOneOne;
-    Button mOneTwo;
-    Button mOneThree;
-    Button mTwoOne;
-    Button mTwoTwo;
-    Button mTwoThree;
-    Button mThreeOne;
-    Button mThreeTwo;
-    Button mThreeThree;
+    private Button mOneOne;
+    private Button mOneTwo;
+    private Button mOneThree;
+    private Button mTwoOne;
+    private Button mTwoTwo;
+    private Button mTwoThree;
+    private Button mThreeOne;
+    private Button mThreeTwo;
+    private Button mThreeThree;
 
-    Button mNewGame;
+    private Button mNewGame;
 
-    TextView mScore;
-    int mXScore = 0;
-    int mOScore = 0;
+    private TextView mScore;
+    private int mXScore = 0;
+    private int mOScore = 0;
 
-    Button mResetScore;
+    private Button mResetScore;
 
-    TicTacType mTurn = TicTacType.X;
-    TicTacType mWinner = TicTacType.UNSELECTED;
+    private TicTacType mTurn = TicTacType.X;
+    private TicTacType mWinner = TicTacType.UNSELECTED;
 
-    Toast message;
+    private static Toast mToast;
 
-    boolean someoneWon = false;
+    private boolean mSomeoneWon = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -165,8 +166,8 @@ public class MainActivity extends AppCompatActivity {
         updateBoard();
     }
 
-    public void tapCell(int i) {
-        if (!someoneWon) {
+    private void tapCell(int i) {
+        if (!mSomeoneWon) {
             mTicTacToeBoard.set(i, mTurn);
 
             if (mTurn.equals(TicTacType.X)) {
@@ -184,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
                toast(Toast.makeText(this.getApplicationContext(),
                         mWinner.toString() + " wins!",
                         Toast.LENGTH_LONG));
-                someoneWon = true;
+                mSomeoneWon = true;
 
                 if (mWinner.equals(TicTacType.X)) {
                     mXScore++;
@@ -196,52 +197,141 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         else {
-            message.cancel();
+            mToast.cancel();
             toast(Toast.makeText(this.getApplicationContext(),
                     "Start a new game, " + mWinner.toString() + " already won!",
                     Toast.LENGTH_LONG));
         }
     }
 
-    public void updateBoard() {
-        mOneOne.setText(mTicTacToeBoard.get(0).getCurrentValue().toString());
-        mOneTwo.setText(mTicTacToeBoard.get(1).getCurrentValue().toString());
-        mOneThree.setText(mTicTacToeBoard.get(2).getCurrentValue().toString());
-        mTwoOne.setText(mTicTacToeBoard.get(3).getCurrentValue().toString());
-        mTwoTwo.setText(mTicTacToeBoard.get(4).getCurrentValue().toString());
-        mTwoThree.setText(mTicTacToeBoard.get(5).getCurrentValue().toString());
-        mThreeOne.setText(mTicTacToeBoard.get(6).getCurrentValue().toString());
-        mThreeTwo.setText(mTicTacToeBoard.get(7).getCurrentValue().toString());
-        mThreeThree.setText(mTicTacToeBoard.get(8).getCurrentValue().toString());
+    /**
+     * Update the board and score information
+     */
+    private void updateBoard() {
+        // Update the letters, add a splash of color
+        for (int i = 0; i < 9; i++) {
+            TicTacType type = mTicTacToeBoard.get(i).getCurrentValue();
+
+            switch(i) {
+                case 0:
+                    if (type.equals(TicTacType.X)) {
+                        mOneOne.setTextColor(Color.parseColor("#aa0000"));
+                    }
+                    else {
+                        mOneOne.setTextColor(Color.parseColor("#000000"));
+                    }
+                    mOneOne.setText(type.toString());
+                    break;
+                case 1:
+                    if (type.equals(TicTacType.X)) {
+                        mOneTwo.setTextColor(Color.parseColor("#aa0000"));
+                    }
+                    else {
+                        mOneTwo.setTextColor(Color.parseColor("#000000"));
+                    }
+                    mOneTwo.setText(type.toString());
+                    break;
+                case 2:
+                    if (type.equals(TicTacType.X)) {
+                        mOneThree.setTextColor(Color.parseColor("#aa0000"));
+                    }
+                    else {
+                        mOneThree.setTextColor(Color.parseColor("#000000"));
+                    }
+                    mOneThree.setText(type.toString());
+                    break;
+                case 3:
+                    if (type.equals(TicTacType.X)) {
+                        mTwoOne.setTextColor(Color.parseColor("#aa0000"));
+                    }
+                    else {
+                        mTwoOne.setTextColor(Color.parseColor("#000000"));
+                    }
+                    mTwoOne.setText(type.toString());
+                    break;
+                case 4:
+                    if (type.equals(TicTacType.X)) {
+                        mTwoTwo.setTextColor(Color.parseColor("#aa0000"));
+                    }
+                    else {
+                        mTwoTwo.setTextColor(Color.parseColor("#000000"));
+                    }
+                    mTwoTwo.setText(type.toString());
+                    break;
+                case 5:
+                    if (type.equals(TicTacType.X)) {
+                        mTwoThree.setTextColor(Color.parseColor("#aa0000"));
+                    }
+                    else {
+                        mTwoThree.setTextColor(Color.parseColor("#000000"));
+                    }
+                    mTwoThree.setText(type.toString());
+                    break;
+                case 6:
+                    if (type.equals(TicTacType.X)) {
+                        mThreeOne.setTextColor(Color.parseColor("#aa0000"));
+                    }
+                    else {
+                        mThreeOne.setTextColor(Color.parseColor("#000000"));
+                    }
+                    mThreeOne.setText(type.toString());
+                    break;
+                case 7:
+                    if (type.equals(TicTacType.X)) {
+                        mThreeTwo.setTextColor(Color.parseColor("#aa0000"));
+                    }
+                    else {
+                        mThreeTwo.setTextColor(Color.parseColor("#000000"));
+                    }
+                    mThreeTwo.setText(type.toString());
+                    break;
+                case 8:
+                    if (type.equals(TicTacType.X)) {
+                        mThreeThree.setTextColor(Color.parseColor("#aa0000"));
+                    }
+                    else {
+                        mThreeThree.setTextColor(Color.parseColor("#000000"));
+                    }
+                    mThreeThree.setText(type.toString());
+                    break;
+            }
+        }
 
         mScore.setText(getString(R.string.score, mXScore, mOScore));
     }
 
-    public void newGame() {
+    /**
+     * Creates a new game, does not reset score
+     */
+    private void newGame() {
         for (int i = 0; i < 9; i++) {
             mTicTacToeBoard.get(i).setCurrentValue(TicTacType.UNSELECTED);
         }
-        someoneWon = false;
+        mSomeoneWon = false;
         mWinner = TicTacType.UNSELECTED;
 
         updateBoard();
 
-        if (message != null) {
-            message.cancel();
+        if (mToast != null) {
+            mToast.cancel();
         }
     }
 
-    public void toast(Toast t) {
-        if (message != null) {
-            message = null;
-        }
-        message = t;
-        message.show();
-    }
-
-    public void resetScore() {
+    /**
+     * Resets the score, does not start a new game
+     */
+    private void resetScore() {
         mXScore = 0;
         mOScore = 0;
         updateBoard();
+    }
+
+    private void toast(Toast t) {
+        if (mToast != null) {
+            mToast.cancel();
+            mToast = null;
+        }
+        mToast = t;
+        mToast.show();
     }
 }

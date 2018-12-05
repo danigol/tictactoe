@@ -9,20 +9,14 @@ import android.widget.Toast;
 
 import com.daniellegolinsky.tictactoe.ToeCell.TicTacType;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     private ToeBoard mTicTacToeBoard;
 
-    private Button mOneOne;
-    private Button mOneTwo;
-    private Button mOneThree;
-    private Button mTwoOne;
-    private Button mTwoTwo;
-    private Button mTwoThree;
-    private Button mThreeOne;
-    private Button mThreeTwo;
-    private Button mThreeThree;
-
+    private List<Button> gridButtons;
     private Button mNewGame;
 
     private TextView mScore;
@@ -53,115 +47,130 @@ public class MainActivity extends AppCompatActivity {
         mResetScore = (Button) findViewById(R.id.reset_score_button);
         mResetScore.setOnClickListener(v -> resetScore());
 
-        mOneOne = (Button) findViewById(R.id.one_one);
-        mOneTwo = (Button) findViewById(R.id.one_two);
-        mOneThree = (Button) findViewById(R.id.one_three);
-        mTwoOne = (Button) findViewById(R.id.two_one);
-        mTwoTwo = (Button) findViewById(R.id.two_two);
-        mTwoThree = (Button) findViewById(R.id.two_three);
-        mThreeOne = (Button) findViewById(R.id.three_one);
-        mThreeTwo = (Button) findViewById(R.id.three_two);
-        mThreeThree = (Button) findViewById(R.id.three_three);
-
-        mOneOne.setOnClickListener(v -> {
-            if (mTicTacToeBoard.get(0).getCurrentValue() == TicTacType.UNSELECTED) {
-                tapCell(0);
+        gridButtons = new ArrayList<>();
+        for (int i = 0; i < mTicTacToeBoard.boardSize(); i++) {
+            // Only made for 9, for now
+            Button b;
+            switch(i) {
+                case 0:
+                    b = findViewById(R.id.one_one);
+                    b.setOnClickListener(v -> {
+                        if (mTicTacToeBoard.get(0).getCurrentValue() == TicTacType.UNSELECTED) {
+                            tapCell(0);
+                        } else {
+                            toast(Toast.makeText(this,
+                                    "Please pick another cell.",
+                                    Toast.LENGTH_SHORT));
+                        }
+                    });
+                    gridButtons.add(b);
+                    break;
+                case 1:
+                    b = findViewById(R.id.one_two);
+                    b.setOnClickListener(v -> {
+                        if (mTicTacToeBoard.get(1).getCurrentValue() == TicTacType.UNSELECTED) {
+                            tapCell(1);
+                        } else {
+                            toast(Toast.makeText(this,
+                                    "Please pick another cell.",
+                                    Toast.LENGTH_SHORT));
+                        }
+                    });
+                    gridButtons.add(b);
+                    break;
+                case 2:
+                    b = findViewById(R.id.one_three);
+                    b.setOnClickListener(v -> {
+                        if (mTicTacToeBoard.get(2).getCurrentValue() == TicTacType.UNSELECTED) {
+                            tapCell(2);
+                        } else {
+                            toast(Toast.makeText(this,
+                                    "Please pick another cell.",
+                                    Toast.LENGTH_SHORT));
+                        }
+                    });
+                    gridButtons.add(b);
+                    break;
+                case 3:
+                    b = findViewById(R.id.two_one);
+                    b.setOnClickListener(v -> {
+                        if (mTicTacToeBoard.get(3).getCurrentValue() == TicTacType.UNSELECTED) {
+                            tapCell(3);
+                        } else {
+                            toast(Toast.makeText(this,
+                                    "Please pick another cell.",
+                                    Toast.LENGTH_SHORT));
+                        }
+                    });
+                    gridButtons.add(b);
+                    break;
+                case 4:
+                    b = findViewById(R.id.two_two);
+                    b.setOnClickListener(v -> {
+                        if (mTicTacToeBoard.get(4).getCurrentValue() == TicTacType.UNSELECTED) {
+                            tapCell(4);
+                        } else {
+                            toast(Toast.makeText(this,
+                                    "Please pick another cell.",
+                                    Toast.LENGTH_SHORT));
+                        }
+                    });
+                    gridButtons.add(b);
+                    break;
+                case 5:
+                    b = findViewById(R.id.two_three);
+                    b.setOnClickListener(v -> {
+                        if (mTicTacToeBoard.get(5).getCurrentValue() == TicTacType.UNSELECTED) {
+                            tapCell(5);
+                        } else {
+                            toast(Toast.makeText(this,
+                                    "Please pick another cell.",
+                                    Toast.LENGTH_SHORT));
+                        }
+                    });
+                    gridButtons.add(b);
+                    break;
+                case 6:
+                    b = findViewById(R.id.three_one);
+                    b.setOnClickListener(v -> {
+                        if (mTicTacToeBoard.get(6).getCurrentValue() == TicTacType.UNSELECTED) {
+                            tapCell(6);
+                        } else {
+                            toast(Toast.makeText(this,
+                                    "Please pick another cell.",
+                                    Toast.LENGTH_SHORT));
+                        }
+                    });
+                    gridButtons.add(b);
+                    break;
+                case 7:
+                    b = findViewById(R.id.three_two);
+                    b.setOnClickListener(v -> {
+                        if (mTicTacToeBoard.get(7).getCurrentValue() == TicTacType.UNSELECTED) {
+                            tapCell(7);
+                        } else {
+                            toast(Toast.makeText(this,
+                                    "Please pick another cell.",
+                                    Toast.LENGTH_SHORT));
+                        }
+                    });
+                    gridButtons.add(b);
+                    break;
+                case 8:
+                    b = findViewById(R.id.three_three);
+                    b.setOnClickListener(v -> {
+                        if (mTicTacToeBoard.get(8).getCurrentValue() == TicTacType.UNSELECTED) {
+                            tapCell(8);
+                        } else {
+                            toast(Toast.makeText(this,
+                                    "Please pick another cell.",
+                                    Toast.LENGTH_SHORT));
+                        }
+                    });
+                    gridButtons.add(b);
+                    break;
+                }
             }
-            else {
-                toast(Toast.makeText(this,
-                        "Please pick another cell.",
-                        Toast.LENGTH_SHORT));
-            }
-        });
-
-        mOneTwo.setOnClickListener(v -> {
-            if (mTicTacToeBoard.get(1).getCurrentValue() == TicTacType.UNSELECTED) {
-                tapCell(1);
-            }
-            else {
-                toast(Toast.makeText(this,
-                        "Please pick another cell.",
-                        Toast.LENGTH_SHORT));
-            }
-        });
-
-        mOneThree.setOnClickListener(v -> {
-            if (mTicTacToeBoard.get(2).getCurrentValue() == TicTacType.UNSELECTED) {
-                tapCell(2);
-            }
-            else {
-                toast(Toast.makeText(this,
-                        "Please pick another cell.",
-                        Toast.LENGTH_SHORT));
-            }
-        });
-
-        mTwoOne.setOnClickListener(v -> {
-            if (mTicTacToeBoard.get(3).getCurrentValue() == TicTacType.UNSELECTED) {
-                tapCell(3);
-            }
-            else {
-                toast(Toast.makeText(this,
-                        "Please pick another cell.",
-                        Toast.LENGTH_SHORT));
-            }
-        });
-
-        mTwoTwo.setOnClickListener(v -> {
-            if (mTicTacToeBoard.get(4).getCurrentValue() == TicTacType.UNSELECTED) {
-                tapCell(4);
-            }
-            else {
-                toast(Toast.makeText(this,
-                        "Please pick another cell.",
-                        Toast.LENGTH_SHORT));
-            }
-        });
-
-        mTwoThree.setOnClickListener(v -> {
-            if (mTicTacToeBoard.get(5).getCurrentValue() == TicTacType.UNSELECTED) {
-                tapCell(5);
-            }
-            else {
-                toast(Toast.makeText(this,
-                        "Please pick another cell.",
-                        Toast.LENGTH_SHORT));
-            }
-        });
-
-        mThreeOne.setOnClickListener(v -> {
-            if (mTicTacToeBoard.get(6).getCurrentValue() == TicTacType.UNSELECTED) {
-                tapCell(6);
-            }
-            else {
-                toast(Toast.makeText(this,
-                        "Please pick another cell.",
-                        Toast.LENGTH_SHORT));
-            }
-        });
-
-        mThreeTwo.setOnClickListener(v -> {
-            if (mTicTacToeBoard.get(7).getCurrentValue() == TicTacType.UNSELECTED) {
-                tapCell(7);
-            }
-            else {
-                toast(Toast.makeText(this,
-                        "Please pick another cell.",
-                        Toast.LENGTH_SHORT));
-            }
-        });
-
-        mThreeThree.setOnClickListener(v -> {
-            if (mTicTacToeBoard.get(8).getCurrentValue() == TicTacType.UNSELECTED) {
-                tapCell(8);
-            }
-            else {
-                toast(Toast.makeText(this,
-                        "Please pick another cell.",
-                        Toast.LENGTH_SHORT));
-            }
-        });
-
 
         updateBoard();
     }
@@ -218,89 +227,14 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < 9; i++) {
             TicTacType type = mTicTacToeBoard.get(i).getCurrentValue();
 
-            switch(i) {
-                case 0:
-                    if (type.equals(TicTacType.X)) {
-                        mOneOne.setTextColor(Color.parseColor("#aa0000"));
-                    }
-                    else {
-                        mOneOne.setTextColor(Color.parseColor("#000000"));
-                    }
-                    mOneOne.setText(type.toString());
-                    break;
-                case 1:
-                    if (type.equals(TicTacType.X)) {
-                        mOneTwo.setTextColor(Color.parseColor("#aa0000"));
-                    }
-                    else {
-                        mOneTwo.setTextColor(Color.parseColor("#000000"));
-                    }
-                    mOneTwo.setText(type.toString());
-                    break;
-                case 2:
-                    if (type.equals(TicTacType.X)) {
-                        mOneThree.setTextColor(Color.parseColor("#aa0000"));
-                    }
-                    else {
-                        mOneThree.setTextColor(Color.parseColor("#000000"));
-                    }
-                    mOneThree.setText(type.toString());
-                    break;
-                case 3:
-                    if (type.equals(TicTacType.X)) {
-                        mTwoOne.setTextColor(Color.parseColor("#aa0000"));
-                    }
-                    else {
-                        mTwoOne.setTextColor(Color.parseColor("#000000"));
-                    }
-                    mTwoOne.setText(type.toString());
-                    break;
-                case 4:
-                    if (type.equals(TicTacType.X)) {
-                        mTwoTwo.setTextColor(Color.parseColor("#aa0000"));
-                    }
-                    else {
-                        mTwoTwo.setTextColor(Color.parseColor("#000000"));
-                    }
-                    mTwoTwo.setText(type.toString());
-                    break;
-                case 5:
-                    if (type.equals(TicTacType.X)) {
-                        mTwoThree.setTextColor(Color.parseColor("#aa0000"));
-                    }
-                    else {
-                        mTwoThree.setTextColor(Color.parseColor("#000000"));
-                    }
-                    mTwoThree.setText(type.toString());
-                    break;
-                case 6:
-                    if (type.equals(TicTacType.X)) {
-                        mThreeOne.setTextColor(Color.parseColor("#aa0000"));
-                    }
-                    else {
-                        mThreeOne.setTextColor(Color.parseColor("#000000"));
-                    }
-                    mThreeOne.setText(type.toString());
-                    break;
-                case 7:
-                    if (type.equals(TicTacType.X)) {
-                        mThreeTwo.setTextColor(Color.parseColor("#aa0000"));
-                    }
-                    else {
-                        mThreeTwo.setTextColor(Color.parseColor("#000000"));
-                    }
-                    mThreeTwo.setText(type.toString());
-                    break;
-                case 8:
-                    if (type.equals(TicTacType.X)) {
-                        mThreeThree.setTextColor(Color.parseColor("#aa0000"));
-                    }
-                    else {
-                        mThreeThree.setTextColor(Color.parseColor("#000000"));
-                    }
-                    mThreeThree.setText(type.toString());
-                    break;
+            Button b = gridButtons.get(i);
+            if (type.equals(TicTacType.X)) {
+                b.setTextColor(Color.parseColor("#aa0000"));
             }
+            else {
+                b.setTextColor(Color.parseColor("#000000"));
+            }
+            b.setText(type.toString());
         }
 
         mScore.setText(getString(R.string.score, mXScore, mOScore));

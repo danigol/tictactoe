@@ -55,6 +55,10 @@ public class ToeBoard {
         this.moves = 0;
     }
 
+    public int boardSize() {
+        return this.cells.size();
+    }
+
     public TicTacType checkForWinner() {
         // 5 is the minimum number of moves anyway
         if (this.moves > 4) {

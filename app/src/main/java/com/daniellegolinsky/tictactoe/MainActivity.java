@@ -32,6 +32,10 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean mSomeoneWon = false;
 
+    private TextView mDirections;
+
+    private boolean mGaveDirections;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
 
         mResetScore = (Button) findViewById(R.id.reset_score_button);
         mResetScore.setOnClickListener(v -> resetScore());
+
+        mDirections = (TextView) findViewById(R.id.directions);
 
         gridButtons = new ArrayList<>();
         for (int i = 0; i < mTicTacToeBoard.boardSize(); i++) {
@@ -173,6 +179,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
         updateBoard();
+        mGaveDirections = true;
     }
 
     private void tapCell(int i) {
@@ -238,6 +245,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         mScore.setText(getString(R.string.score, mXScore, mOScore));
+
+        // Display whose turn it is after the first move
+        if (mGaveDirections) {
+            mDirections.setText(getString(R.string.whose_turn, mTurn.toString()));
+        }
     }
 
     /**

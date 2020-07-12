@@ -8,12 +8,25 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <style name="info_text" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/textColor</item>
+    </style>
+
+    <style name="title_text" parent="info_text">
+        <item name="android:textSize">24dp</item>
+    </style>
+
+    <style name="subtitle_text" parent="info_text">
+        <item name="android:textSize">18dp</item>
+    </style>
+
     <style name="board">
-        <item name="android:background">@color/board_background</item>
+        <item name="android:background">@color/boardBackground</item>
     </style>
     <style name="button_cell" parent="android:Widget.Button">
         <item name="android:background">@drawable/button_background</item>
-        <item name="android:elevation">12dp</item>
+        <item name="android:elevation">0dp</item>
         <item name="android:textSize">100sp</item>
         <item name="android:layout_margin">4dp</item>
     </style>

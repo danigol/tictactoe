@@ -236,10 +236,10 @@ public class MainActivity extends AppCompatActivity {
 
             Button b = gridButtons.get(i);
             if (type.equals(TicTacType.X)) {
-                b.setTextColor(Color.parseColor("#aa0000"));
+                b.setTextColor(getResources().getColor(R.color.xTextColor));
             }
             else {
-                b.setTextColor(Color.parseColor("#000000"));
+                b.setTextColor(getResources().getColor(R.color.oTextColor));
             }
             b.setText(type.toString());
         }

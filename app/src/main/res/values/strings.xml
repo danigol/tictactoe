@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ticTacToe</string>
+    <string name="app_name">Ticky Tacky Toey</string>
     <string name="directions">Tap a square to claim it. X goes first.</string>
     <string name="score">Score: X: %1$d --- O: %2$d</string>
     <string name="new_game">New Game</string>

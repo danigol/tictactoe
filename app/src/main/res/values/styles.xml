@@ -8,4 +8,26 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="board">
+        <item name="android:background">@color/board_background</item>
+    </style>
+    <style name="button_cell" parent="android:Widget.Button">
+        <item name="android:background">@drawable/button_background</item>
+        <item name="android:elevation">12dp</item>
+        <item name="android:textSize">100sp</item>
+        <item name="android:layout_margin">4dp</item>
+    </style>
+
+    <style name="control_button" parent="android:Widget.Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">48sp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:elevation">4dp</item>
+        <item name="android:background">@drawable/button_background</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginEnd">8dp</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:layout_marginBottom">12dp</item>
+    </style>
+
 </resources>

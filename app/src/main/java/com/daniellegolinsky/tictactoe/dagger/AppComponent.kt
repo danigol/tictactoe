@@ -1,5 +1,6 @@
 package com.daniellegolinsky.tictactoe.dagger
 
+import com.daniellegolinsky.tictactoe.TicTacToeApplication
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -12,11 +13,11 @@ import javax.inject.Singleton
         modules = [ AndroidSupportInjectionModule::class,
                     ActivityBuildersModule::class ]
 )
-interface AppComponent : AndroidInjector<DaggerApplication> {
+interface AppComponent : AndroidInjector<TicTacToeApplication> {
     @Component.Builder
     interface Builder {
         @BindsInstance
-        fun application(application: DaggerApplication): Builder
+        fun application(application: TicTacToeApplication): Builder
         fun build() : AppComponent
     }
 }

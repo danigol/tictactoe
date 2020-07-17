@@ -5,6 +5,9 @@ import androidx.lifecycle.ViewModelProvider
 import javax.inject.Inject
 import javax.inject.Provider
 
+/**
+ * https://www.lvguowei.me/post/dagger-android-2/
+ */
 class ViewModelProviderFactory @Inject constructor(private val creators: Map<Class<out ViewModel>,
                                                    @JvmSuppressWildcards Provider<ViewModel>>) :
             ViewModelProvider.Factory {

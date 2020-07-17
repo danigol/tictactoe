@@ -21,7 +21,7 @@ class ViewModelProviderFactory @Inject constructor(private val creators: Map<Cla
 
         // if this is not one of the allowed keys, throw exception
         if (creator == null) {
-            throw IllegalArgumentException("unknown model class $modelClass")
+            throw IllegalArgumentException("Unknown model class $modelClass")
         }
 
         // return the Provider
@@ -30,9 +30,5 @@ class ViewModelProviderFactory @Inject constructor(private val creators: Map<Cla
         } catch (e: Exception) {
             throw RuntimeException(e)
         }
-    }
-
-    companion object {
-        private const val TAG = "VMProviderFactory"
     }
 }

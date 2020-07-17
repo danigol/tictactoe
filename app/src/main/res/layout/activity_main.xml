@@ -1,152 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    style="@style/board"
-    tools:context="com.daniellegolinsky.tictactoe.MainActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
-        android:id="@+id/columns"
-        android:orientation="vertical"
+    <data>
+        <variable
+            name="viewModel"
+            type="com.daniellegolinsky.tictactoe.viewModel.BoardViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum="3"
-        android:layout_weight="1">
-
-        <TextView
-            android:id="@+id/directions"
-            style="@style/title_text"
-            android:text="@string/directions"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:textAlignment="center"/>
-        <TextView
-            android:id="@+id/score"
-            style="@style/subtitle_text"
-            android:text="@string/score"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:layout_marginTop="4dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="16dp"/>
+        style="@style/board"
+        tools:context="com.daniellegolinsky.tictactoe.MainActivity">
 
         <LinearLayout
-            android:id="@+id/row_one"
-            android:orientation="horizontal"
+            android:id="@+id/columns"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:weightSum="3"
             android:layout_weight="1">
 
-            <Button
-                android:id="@+id/one_one"
-                android:layout_weight="1"
+            <TextView
+                android:id="@+id/directions"
+                style="@style/title_text"
+                android:text="@string/directions"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text=""
-                style="@style/button_cell"/>
-            <Button
-                android:id="@+id/one_two"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:textAlignment="center"/>
+            <TextView
+                android:id="@+id/score"
+                style="@style/subtitle_text"
+                android:text="@string/score"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text=""
-                style="@style/button_cell"/>
-            <Button
-                android:id="@+id/one_three"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:layout_marginTop="4dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="16dp"/>
+
+            <LinearLayout
+                android:id="@+id/row_one"
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text=""
-                style="@style/button_cell"/>
+                android:layout_height="wrap_content"
+                android:weightSum="3"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/one_one"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text=""
+                    style="@style/button_cell"
+                    android:onClick="@{() -> viewModel.tapCell0()}"/>
+                <Button
+                    android:id="@+id/one_two"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text=""
+                    cellPosition="1"
+                    style="@style/button_cell"
+                    android:onClick="@{() -> viewModel.tapCell1()}"/>
+                <Button
+                    android:id="@+id/one_three"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text=""
+                    cellPosition="2"
+                    style="@style/button_cell"
+                    android:onClick="@{() -> viewModel.tapCell2()}"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/row_two"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="3"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/two_one"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text=""
+                    style="@style/button_cell"
+                    android:onClick="@{() -> viewModel.tapCell3()}"/>
+                <Button
+                    android:id="@+id/two_two"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text=""
+                    style="@style/button_cell"
+                    android:onClick="@{() -> viewModel.tapCell4()}"/>
+                <Button
+                    android:id="@+id/two_three"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text=""
+                    style="@style/button_cell"
+                    android:onClick="@{() -> viewModel.tapCell5()}"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/row_three"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="3"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/three_one"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text=""
+                    style="@style/button_cell"
+                    android:onClick="@{() -> viewModel.tapCell6()}"/>
+                <Button
+                    android:id="@+id/three_two"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text=""
+                    style="@style/button_cell"
+                    android:onClick="@{() -> viewModel.tapCell7()}"/>
+                <Button
+                    android:id="@+id/three_three"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text=""
+                    style="@style/button_cell"
+                    android:onClick="@{() -> viewModel.tapCell8()}"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+                <Button
+                    android:id="@+id/new_game_button"
+                    style="@style/control_button"
+                    android:text="@string/new_game"
+                    android:layout_weight="1"/>
+                <Button
+                    android:id="@+id/reset_score_button"
+                    style="@style/control_button"
+                    android:text="@string/reset_score"
+                    android:layout_weight="1"/>
+            </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/row_two"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="3"
-            android:layout_weight="1">
-
-            <Button
-                android:id="@+id/two_one"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text=""
-                style="@style/button_cell"/>
-            <Button
-                android:id="@+id/two_two"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text=""
-                style="@style/button_cell"/>
-            <Button
-                android:id="@+id/two_three"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text=""
-                style="@style/button_cell"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/row_three"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="3"
-            android:layout_weight="1">
-
-            <Button
-                android:id="@+id/three_one"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text=""
-                style="@style/button_cell"/>
-            <Button
-                android:id="@+id/three_two"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text=""
-                style="@style/button_cell"/>
-            <Button
-                android:id="@+id/three_three"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text=""
-                style="@style/button_cell"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="2">
-            <Button
-                android:id="@+id/new_game_button"
-                style="@style/control_button"
-                android:text="@string/new_game"
-                android:layout_weight="1"/>
-            <Button
-                android:id="@+id/reset_score_button"
-                style="@style/control_button"
-                android:text="@string/reset_score"
-                android:layout_weight="1"/>
-        </LinearLayout>
-    </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

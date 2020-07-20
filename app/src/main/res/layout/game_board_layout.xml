@@ -139,7 +139,8 @@
                     android:layout_height="match_parent"
                     style="@style/button_cell"
                     android:onClick="@{() -> viewModel.tapCell0()}"
-                    android:text="@{viewModel.cellValue0}"/>
+                    android:text="@{viewModel.cellValue0}"
+                    cellValue="@{viewModel.cellValue0}"/>
                 <Button
                     android:id="@+id/one_two"
                     android:layout_weight="1"
@@ -148,7 +149,8 @@
                     cellPosition="1"
                     style="@style/button_cell"
                     android:onClick="@{() -> viewModel.tapCell1()}"
-                    android:text="@{viewModel.cellValue1}"/>
+                    android:text="@{viewModel.cellValue1}"
+                    cellValue="@{viewModel.cellValue1}"/>
                 <Button
                     android:id="@+id/one_three"
                     android:layout_weight="1"
@@ -157,7 +159,8 @@
                     cellPosition="2"
                     style="@style/button_cell"
                     android:onClick="@{() -> viewModel.tapCell2()}"
-                    android:text="@{viewModel.cellValue2}"/>
+                    android:text="@{viewModel.cellValue2}"
+                    cellValue="@{viewModel.cellValue2}"/>
             </LinearLayout>
 
             <LinearLayout
@@ -177,7 +180,8 @@
                     android:layout_height="match_parent"
                     style="@style/button_cell"
                     android:onClick="@{() -> viewModel.tapCell3()}"
-                    android:text="@{viewModel.cellValue3}"/>
+                    android:text="@{viewModel.cellValue3}"
+                    cellValue="@{viewModel.cellValue3}"/>
                 <Button
                     android:id="@+id/two_two"
                     android:layout_weight="1"
@@ -185,7 +189,8 @@
                     android:layout_height="match_parent"
                     style="@style/button_cell"
                     android:onClick="@{() -> viewModel.tapCell4()}"
-                    android:text="@{viewModel.cellValue4}"/>
+                    android:text="@{viewModel.cellValue4}"
+                    cellValue="@{viewModel.cellValue4}"/>
                 <Button
                     android:id="@+id/two_three"
                     android:layout_weight="1"
@@ -193,7 +198,8 @@
                     android:layout_height="match_parent"
                     style="@style/button_cell"
                     android:onClick="@{() -> viewModel.tapCell5()}"
-                    android:text="@{viewModel.cellValue5}"/>
+                    android:text="@{viewModel.cellValue5}"
+                    cellValue="@{viewModel.cellValue5}"/>
             </LinearLayout>
 
             <LinearLayout
@@ -213,7 +219,8 @@
                     android:layout_height="match_parent"
                     style="@style/button_cell"
                     android:onClick="@{() -> viewModel.tapCell6()}"
-                    android:text="@{viewModel.cellValue6}"/>
+                    android:text="@{viewModel.cellValue6}"
+                    cellValue="@{viewModel.cellValue6}"/>
                 <Button
                     android:id="@+id/three_two"
                     android:layout_weight="1"
@@ -221,7 +228,8 @@
                     android:layout_height="match_parent"
                     style="@style/button_cell"
                     android:onClick="@{() -> viewModel.tapCell7()}"
-                    android:text="@{viewModel.cellValue7}"/>
+                    android:text="@{viewModel.cellValue7}"
+                    cellValue="@{viewModel.cellValue7}"/>
                 <Button
                     android:id="@+id/three_three"
                     android:layout_weight="1"
@@ -229,7 +237,8 @@
                     android:layout_height="match_parent"
                     style="@style/button_cell"
                     android:onClick="@{() -> viewModel.tapCell8()}"
-                    android:text="@{viewModel.cellValue8}"/>
+                    android:text="@{viewModel.cellValue8}"
+                    cellValue="@{viewModel.cellValue8}"/>
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 

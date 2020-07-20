@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
         mTicTacToeBoard = ToeBoard.instance();
 
-        mScore = (TextView) findViewById(R.id.score);
+//        mScore = (TextView) findViewById(R.id.score);
 
         mNewGame = (Button) findViewById(R.id.new_game_button);
         mNewGame.setOnClickListener(v -> newGame());

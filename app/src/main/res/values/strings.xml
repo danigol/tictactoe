@@ -2,6 +2,8 @@
     <string name="app_name">Ticky Tacky Toey</string>
     <string name="directions">Tap a square to claim it. X goes first.</string>
     <string name="score">Score: X: %1$d --- O: %2$d</string>
+    <string name="x_score">X\'s Score:</string>
+    <string name="o_score">O\'s Score:</string>
     <string name="new_game">New Game</string>
     <string name="reset_score">Reset Score</string>
     <string name="whose_turn">It\'s %1$s\'s turn.</string>

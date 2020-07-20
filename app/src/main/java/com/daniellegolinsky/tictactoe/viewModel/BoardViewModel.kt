@@ -27,6 +27,10 @@ class BoardViewModel @Inject constructor(var boardData: BoardData,
     val oScore: LiveData<Int>
         get() = _oScore
 
+    private var _directions: MutableLiveData<String> = MutableLiveData()
+    val directions: LiveData<String>
+        get() = _directions
+
     private var _alertMessage: MutableLiveData<String> = MutableLiveData()
     val alertMessage: LiveData<String>
         get() = _alertMessage
@@ -76,63 +80,59 @@ class BoardViewModel @Inject constructor(var boardData: BoardData,
         _xScore.value = 0
         _oScore.value = 0
         _whoseTurn.value = TicTacType.X
+        _directions.value = resourceProvider.getString(R.string.directions)
     }
 
     fun newGameClicked() {
         boardData.resetBoard()
         winner = TicTacType.UNSELECTED
-        _cellValue0.value = boardData.cells[0].cellStatus.toString()
-        _cellValue1.value = boardData.cells[1].cellStatus.toString()
-        _cellValue2.value = boardData.cells[2].cellStatus.toString()
-        _cellValue3.value = boardData.cells[3].cellStatus.toString()
-        _cellValue4.value = boardData.cells[4].cellStatus.toString()
-        _cellValue5.value = boardData.cells[5].cellStatus.toString()
-        _cellValue6.value = boardData.cells[6].cellStatus.toString()
-        _cellValue7.value = boardData.cells[7].cellStatus.toString()
-        _cellValue8.value = boardData.cells[8].cellStatus.toString()
+        refreshCellData()
     }
 
     fun resetScoreClicked() {
         _xScore.value = 0
         _oScore.value = 0
-        boardData.resetBoard()
+        newGameClicked()
+    }
+
+    private fun refreshCellData() {
+        _cellValue0.value = boardData.cells[0].cellStatus.toString()
+        _cellValue1.value = boardData.cells[1].cellStatus.toString()
+        _cellValue2.value = boardData.cells[2].cellStatus.toString()
+        _cellValue3.value = boardData.cells[3].cellStatus.toString()
+        _cellValue4.value = boardData.cells[4].cellStatus.toString()
+        _cellValue5.value = boardData.cells[5].cellStatus.toString()
+        _cellValue6.value = boardData.cells[6].cellStatus.toString()
+        _cellValue7.value = boardData.cells[7].cellStatus.toString()
+        _cellValue8.value = boardData.cells[8].cellStatus.toString()
     }
 
     fun tapCell0() {
         tapCell(0)
-        _cellValue0.value = boardData.cells[0].cellStatus.toString()
     }
     fun tapCell1() {
         tapCell(1)
-        _cellValue1.value = boardData.cells[1].cellStatus.toString()
     }
     fun tapCell2() {
         tapCell(2)
-        _cellValue2.value = boardData.cells[2].cellStatus.toString()
     }
     fun tapCell3() {
         tapCell(3)
-        _cellValue3.value = boardData.cells[3].cellStatus.toString()
     }
     fun tapCell4() {
         tapCell(4)
-        _cellValue4.value = boardData.cells[4].cellStatus.toString()
     }
     fun tapCell5() {
         tapCell(5)
-        _cellValue5.value = boardData.cells[5].cellStatus.toString()
     }
     fun tapCell6() {
         tapCell(6)
-        _cellValue6.value = boardData.cells[6].cellStatus.toString()
     }
     fun tapCell7() {
         tapCell(7)
-        _cellValue7.value = boardData.cells[7].cellStatus.toString()
     }
     fun tapCell8() {
         tapCell(8)
-        _cellValue8.value = boardData.cells[8].cellStatus.toString()
     }
 
     private fun tapCell(selectedCell: Int) {
@@ -177,5 +177,10 @@ class BoardViewModel @Inject constructor(var boardData: BoardData,
         if (boardData.getMovesRemaining() == 0 && winner == TicTacType.UNSELECTED) {
             _alertMessage.value = resourceProvider.getString(R.string.tie_game)
         }
+
+        _directions.value =
+                resourceProvider.getString(R.string.whose_turn, _whoseTurn.value.toString())
+
+        refreshCellData()
     }
 }

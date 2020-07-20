@@ -2,13 +2,14 @@ package com.daniellegolinsky.tictactoe
 
 import android.widget.Button
 import androidx.databinding.BindingAdapter
+import com.daniellegolinsky.tictactoe.model.TicTacType
 
 @BindingAdapter("cellValue")
 fun setCellTextColor(button: Button, cellValue: String) {
     when (cellValue) {
-        ToeCell.TicTacType.X.toString() ->
+        TicTacType.X.toString() ->
             button.setTextColor(button.context.getColor(R.color.xTextColor))
-        ToeCell.TicTacType.O.toString() ->
+        TicTacType.O.toString() ->
             button.setTextColor(button.context.getColor(R.color.oTextColor))
     }
 }

@@ -11,4 +11,6 @@
     <string name="x">X</string>
     <string name="o">O</string>
     <string name="wins">%1$s WINS!</string>
+    <string name="start_a_new_game">%1$s already won, start a new game!</string>
+    <string name="tie_game">Tie game! Try again!</string>
 </resources>

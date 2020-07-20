@@ -1,5 +1,6 @@
 package com.daniellegolinsky.tictactoe.viewModel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,6 +12,12 @@ import javax.inject.Inject
 
 class BoardViewModel @Inject constructor(var boardData: BoardData,
                                          var resourceProvider: ResourceProvider) : ViewModel(){
+
+    companion object {
+        const val VM_TAG = "BoardViewModel"
+    }
+
+    private var winner: TicTacType = TicTacType.UNSELECTED
 
     private var _xScore: MutableLiveData<Int> = MutableLiveData()
     val xScore: LiveData<Int>
@@ -73,6 +80,7 @@ class BoardViewModel @Inject constructor(var boardData: BoardData,
 
     fun newGameClicked() {
         boardData.resetBoard()
+        winner = TicTacType.UNSELECTED
         _cellValue0.value = boardData.cells[0].cellStatus.toString()
         _cellValue1.value = boardData.cells[1].cellStatus.toString()
         _cellValue2.value = boardData.cells[2].cellStatus.toString()
@@ -128,22 +136,46 @@ class BoardViewModel @Inject constructor(var boardData: BoardData,
     }
 
     private fun tapCell(selectedCell: Int) {
-        if (selectedCell < boardData.cells.size
-                && boardData.cells[selectedCell].cellStatus == TicTacType.UNSELECTED) {
-            boardData.cells[selectedCell].cellStatus = _whoseTurn.value!!
-            _whoseTurn.value = when (_whoseTurn.value) {
-                TicTacType.X -> TicTacType.O
-                else -> TicTacType.X
+        if (winner == TicTacType.UNSELECTED) {
+            if (boardData.getMovesRemaining() != 0) {
+                if (boardData.cells[selectedCell].cellStatus == TicTacType.UNSELECTED) {
+                    if (selectedCell < boardData.cells.size) {
+                        boardData.cells[selectedCell].cellStatus = _whoseTurn.value!!
+                        _whoseTurn.value = when (_whoseTurn.value) {
+                            TicTacType.X -> TicTacType.O
+                            else -> TicTacType.X
+                        }
+                        boardData.moves++
+                        var possibleWinner = boardData.checkForWinner()
+                        if (possibleWinner != null && possibleWinner != TicTacType.UNSELECTED) {
+                            // We have a winner
+                            winner = possibleWinner!!
+                            _alertMessage.value =
+                                    resourceProvider.getString(R.string.wins, winner.toString())
+                            when (winner) {
+                                TicTacType.X -> _xScore.value = _xScore.value?.plus(1)
+                                TicTacType.O -> _oScore.value = _oScore.value?.plus(1)
+                            }
+                        }
+                    } else {
+                        Log.i(VM_TAG, "Somehow the user selected an invalid cell?")
+                    }
+                }
+                else {
+                    _alertMessage.value = resourceProvider.getString(R.string.already_selected)
+                }
             }
-            boardData.moves++
-            var possibleWinner = boardData.checkForWinner()
-            if (possibleWinner != TicTacType.UNSELECTED) {
-                // We have a winner
-                _alertMessage.value = resourceProvider.getString(R.string.wins, possibleWinner.toString())
+            else {
+                _alertMessage.value = resourceProvider.getString(R.string.tie_game)
             }
         }
         else {
-            _alertMessage.value = resourceProvider.getString(R.string.already_selected)
+            _alertMessage.value =
+                    resourceProvider.getString(R.string.start_a_new_game, winner.toString())
+        }
+
+        if (boardData.getMovesRemaining() == 0 && winner == TicTacType.UNSELECTED) {
+            _alertMessage.value = resourceProvider.getString(R.string.tie_game)
         }
     }
 }

@@ -1,11 +1,55 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+    <style name="info_text" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/textColor</item>
+    </style>
+
+    <style name="title_text" parent="info_text">
+        <item name="android:textSize">20dp</item>
+    </style>
+
+    <style name="subtitle_text" parent="info_text">
+        <item name="android:textSize">16dp</item>
+    </style>
+
+    <style name="board">
+        <item name="android:background">@color/boardBackground</item>
+    </style>
+
+    <style name="board_well">
+        <item name="android:background">@drawable/well_background</item>
+    </style>
+
+    <style name="button_cell" parent="android:Widget.Button">
+        <item name="android:background">@drawable/button_background</item>
+        <item name="android:elevation">0dp</item>
+        <item name="android:textSize">100sp</item>
+        <item name="android:layout_margin">4dp</item>
+    </style>
+
+    <style name="control_button" parent="android:Widget.Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">48sp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:elevation">4dp</item>
+        <item name="android:background">@drawable/button_background</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginEnd">8dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginBottom">16dp</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:paddingTop">2dp</item>
+        <item name="android:paddingBottom">2dp</item>
     </style>
 
 </resources>

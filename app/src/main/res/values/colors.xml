@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#FFEEFF</color>
+    <color name="colorPrimaryDark">#110011</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="textColor">#111111</color>
+    <color name="boardBackground">#EEEEEE</color>
+    <color name="boardWellStart">#AAAAAA</color>
+    <color name="boardWellEnd">#DDDDDD</color>
+
+
+    <color name="xTextColor">#CC0000</color>
+    <color name="oTextColor">#0000CC</color>
+
 </resources>

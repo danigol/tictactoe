@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.daniellegolinsky.tictactoe.viewModel.BoardViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        style="@style/board"
+        tools:context="com.daniellegolinsky.tictactoe.MainActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/scoreAndInstructionsLayout"
+            style="@style/board_well"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="16dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@id/gameBoardLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
+
+            <TextView
+                android:id="@+id/directions"
+                style="@style/title_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="@{viewModel.directions}"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/xScoreLabel"
+                style="@style/subtitle_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="2dp"
+                android:text="@string/x_score"
+                android:textAlignment="textEnd"
+                app:layout_constraintEnd_toStartOf="@id/xScore"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintHorizontal_weight="0.95"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/directions" />
+
+            <TextView
+                android:id="@+id/xScore"
+                style="@style/subtitle_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="@{viewModel.XScore.toString()}"
+                android:textAlignment="textStart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_weight="0.05"
+                app:layout_constraintStart_toEndOf="@id/xScoreLabel"
+                app:layout_constraintTop_toBottomOf="@id/directions"
+                tools:text="0" />
+
+            <TextView
+                android:id="@+id/oScoreLabel"
+                style="@style/subtitle_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginBottom="16dp"
+                android:text="@string/o_score"
+                android:textAlignment="textEnd"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/oScore"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintHorizontal_weight="0.95"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/xScoreLabel" />
+
+            <TextView
+                android:id="@+id/oScore"
+                style="@style/subtitle_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="16dp"
+                android:text="@{viewModel.OScore.toString()}"
+                android:textAlignment="textStart"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_weight="0.05"
+                app:layout_constraintStart_toEndOf="@id/oScoreLabel"
+                app:layout_constraintTop_toBottomOf="@id/xScore"
+                tools:text="0" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/gameBoardLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/scoreAndInstructionsLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/newGameAndResetLayout">
+            <LinearLayout
+                android:id="@+id/row_one"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="3"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <Button
+                    android:id="@+id/one_one"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/button_cell"
+                    android:onClick="@{() -> viewModel.tapCell0()}"
+                    android:text="@{viewModel.cellValue0}"
+                    cellValue="@{viewModel.cellValue0}"/>
+                <Button
+                    android:id="@+id/one_two"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    cellPosition="1"
+                    style="@style/button_cell"
+                    android:onClick="@{() -> viewModel.tapCell1()}"
+                    android:text="@{viewModel.cellValue1}"
+                    cellValue="@{viewModel.cellValue1}"/>
+                <Button
+                    android:id="@+id/one_three"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    cellPosition="2"
+                    style="@style/button_cell"
+                    android:onClick="@{() -> viewModel.tapCell2()}"
+                    android:text="@{viewModel.cellValue2}"
+                    cellValue="@{viewModel.cellValue2}"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/row_two"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="3"
+                app:layout_constraintTop_toBottomOf="@id/row_one"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <Button
+                    android:id="@+id/two_one"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/button_cell"
+                    android:onClick="@{() -> viewModel.tapCell3()}"
+                    android:text="@{viewModel.cellValue3}"
+                    cellValue="@{viewModel.cellValue3}"/>
+                <Button
+                    android:id="@+id/two_two"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/button_cell"
+                    android:onClick="@{() -> viewModel.tapCell4()}"
+                    android:text="@{viewModel.cellValue4}"
+                    cellValue="@{viewModel.cellValue4}"/>
+                <Button
+                    android:id="@+id/two_three"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/button_cell"
+                    android:onClick="@{() -> viewModel.tapCell5()}"
+                    android:text="@{viewModel.cellValue5}"
+                    cellValue="@{viewModel.cellValue5}"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/row_three"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="3"
+                app:layout_constraintTop_toBottomOf="@id/row_two"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <Button
+                    android:id="@+id/three_one"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/button_cell"
+                    android:onClick="@{() -> viewModel.tapCell6()}"
+                    android:text="@{viewModel.cellValue6}"
+                    cellValue="@{viewModel.cellValue6}"/>
+                <Button
+                    android:id="@+id/three_two"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/button_cell"
+                    android:onClick="@{() -> viewModel.tapCell7()}"
+                    android:text="@{viewModel.cellValue7}"
+                    cellValue="@{viewModel.cellValue7}"/>
+                <Button
+                    android:id="@+id/three_three"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    style="@style/button_cell"
+                    android:onClick="@{() -> viewModel.tapCell8()}"
+                    android:text="@{viewModel.cellValue8}"
+                    cellValue="@{viewModel.cellValue8}"/>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/newGameAndResetLayout"
+            style="@style/board_well"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp">
+
+            <Button
+                android:id="@+id/new_game_button"
+                style="@style/control_button"
+                android:text="@string/new_game"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/reset_score_button"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:onClick="@{() -> viewModel.newGameClicked()}"/>
+
+            <Button
+                android:id="@+id/reset_score_button"
+                style="@style/control_button"
+                android:text="@string/reset_score"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/new_game_button"
+                app:layout_constraintTop_toTopOf="parent"
+                android:onClick="@{() -> viewModel.resetScoreClicked()}"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

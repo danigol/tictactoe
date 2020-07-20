@@ -7,4 +7,5 @@
     <string name="new_game">New Game</string>
     <string name="reset_score">Reset Score</string>
     <string name="whose_turn">It\'s %1$s\'s turn.</string>
+    <string name="already_selected">This spot was already selected, try another.</string>
 </resources>

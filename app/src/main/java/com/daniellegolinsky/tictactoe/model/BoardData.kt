@@ -1,8 +1,5 @@
 package com.daniellegolinsky.tictactoe.model
 
-import com.daniellegolinsky.tictactoe.ToeBoard
-import com.daniellegolinsky.tictactoe.ToeCell
-
 class BoardData() {
     companion object {
         const val TOTAL_MOVES = 9
@@ -35,6 +32,9 @@ class BoardData() {
 
     fun resetBoard() {
         moves = 0
+        for (cell in cells) {
+            cell.cellStatus = TicTacType.UNSELECTED
+        }
     }
 
     fun boardSide(): Int {

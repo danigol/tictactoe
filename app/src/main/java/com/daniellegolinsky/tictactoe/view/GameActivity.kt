@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.daniellegolinsky.tictactoe.R
 import com.daniellegolinsky.tictactoe.dagger.ViewModelProviderFactory
 import com.daniellegolinsky.tictactoe.databinding.GameBoardLayoutBinding
+import com.daniellegolinsky.tictactoe.model.TicTacType
 import com.daniellegolinsky.tictactoe.viewModel.BoardViewModel
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
@@ -35,12 +36,14 @@ class GameActivity @Inject constructor() : DaggerAppCompatActivity() {
         viewModel.alertMessage.observe(this, Observer{message -> displayMessage(message)})
     }
 
-    private fun displayMessage(message: Int) {
-        if (toast != null) {
-            toast?.cancel()
+    private fun displayMessage(message: String?) {
+        message?.let {
+            if (toast != null) {
+                toast?.cancel()
+            }
+            toast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
+            toast?.show()
         }
-        toast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
-        toast?.show()
     }
 
     private fun getLayoutId(): Int {

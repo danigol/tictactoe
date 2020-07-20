@@ -137,27 +137,27 @@
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text=""
                     style="@style/button_cell"
-                    android:onClick="@{() -> viewModel.tapCell0()}"/>
+                    android:onClick="@{() -> viewModel.tapCell0()}"
+                    android:text="@{viewModel.cellValue0}"/>
                 <Button
                     android:id="@+id/one_two"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text=""
                     cellPosition="1"
                     style="@style/button_cell"
-                    android:onClick="@{() -> viewModel.tapCell1()}"/>
+                    android:onClick="@{() -> viewModel.tapCell1()}"
+                    android:text="@{viewModel.cellValue1}"/>
                 <Button
                     android:id="@+id/one_three"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text=""
                     cellPosition="2"
                     style="@style/button_cell"
-                    android:onClick="@{() -> viewModel.tapCell2()}"/>
+                    android:onClick="@{() -> viewModel.tapCell2()}"
+                    android:text="@{viewModel.cellValue2}"/>
             </LinearLayout>
 
             <LinearLayout
@@ -175,25 +175,25 @@
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text=""
                     style="@style/button_cell"
-                    android:onClick="@{() -> viewModel.tapCell3()}"/>
+                    android:onClick="@{() -> viewModel.tapCell3()}"
+                    android:text="@{viewModel.cellValue3}"/>
                 <Button
                     android:id="@+id/two_two"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text=""
                     style="@style/button_cell"
-                    android:onClick="@{() -> viewModel.tapCell4()}"/>
+                    android:onClick="@{() -> viewModel.tapCell4()}"
+                    android:text="@{viewModel.cellValue4}"/>
                 <Button
                     android:id="@+id/two_three"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text=""
                     style="@style/button_cell"
-                    android:onClick="@{() -> viewModel.tapCell5()}"/>
+                    android:onClick="@{() -> viewModel.tapCell5()}"
+                    android:text="@{viewModel.cellValue5}"/>
             </LinearLayout>
 
             <LinearLayout
@@ -211,25 +211,25 @@
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text=""
                     style="@style/button_cell"
-                    android:onClick="@{() -> viewModel.tapCell6()}"/>
+                    android:onClick="@{() -> viewModel.tapCell6()}"
+                    android:text="@{viewModel.cellValue6}"/>
                 <Button
                     android:id="@+id/three_two"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text=""
                     style="@style/button_cell"
-                    android:onClick="@{() -> viewModel.tapCell7()}"/>
+                    android:onClick="@{() -> viewModel.tapCell7()}"
+                    android:text="@{viewModel.cellValue7}"/>
                 <Button
                     android:id="@+id/three_three"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text=""
                     style="@style/button_cell"
-                    android:onClick="@{() -> viewModel.tapCell8()}"/>
+                    android:onClick="@{() -> viewModel.tapCell8()}"
+                    android:text="@{viewModel.cellValue8}"/>
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 

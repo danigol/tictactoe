@@ -37,7 +37,7 @@ class BoardData() {
         }
     }
 
-    fun boardSide(): Int {
+    fun boardSize(): Int {
         return cells.size
     }
 

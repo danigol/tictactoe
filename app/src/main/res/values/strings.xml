@@ -8,4 +8,7 @@
     <string name="reset_score">Reset Score</string>
     <string name="whose_turn">It\'s %1$s\'s turn.</string>
     <string name="already_selected">This spot was already selected, try another.</string>
+    <string name="x">X</string>
+    <string name="o">O</string>
+    <string name="wins">%1$s WINS!</string>
 </resources>

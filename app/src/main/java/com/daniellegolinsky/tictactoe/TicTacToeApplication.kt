@@ -9,6 +9,12 @@ class TicTacToeApplication : DaggerApplication() {
 
     companion object {
         lateinit var component: AppComponent
+        lateinit var resourceProvider: ResourceProvider
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        resourceProvider = ResourceProvider(this)
     }
 
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {

@@ -9,4 +9,13 @@
 .externalNativeBuild
 .idea/
 *.bat
+*.jar
+**/gradle/
+gradle/wrapper/
+app/gradlew
+**local.properties
+**.apk
+app/release/
+*.properties
+
 

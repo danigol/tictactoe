@@ -13,12 +13,16 @@
         <item name="android:textColor">@color/textColor</item>
     </style>
 
+    <style name="dialog_title_text" parent="info_text">
+        <item name="android:textSize">32sp</item>
+    </style>
+
     <style name="title_text" parent="info_text">
-        <item name="android:textSize">20dp</item>
+        <item name="android:textSize">20sp</item>
     </style>
 
     <style name="subtitle_text" parent="info_text">
-        <item name="android:textSize">16dp</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
     <style name="board">

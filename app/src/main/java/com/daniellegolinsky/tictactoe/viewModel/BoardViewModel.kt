@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.daniellegolinsky.tictactoe.R
 import com.daniellegolinsky.tictactoe.ResourceProvider
+import com.daniellegolinsky.tictactoe.model.AlertType
 import com.daniellegolinsky.tictactoe.model.BoardData
 import com.daniellegolinsky.tictactoe.model.TicTacType
 import javax.inject.Inject
@@ -31,8 +32,12 @@ class BoardViewModel @Inject constructor(var boardData: BoardData,
     val directions: LiveData<String>
         get() = _directions
 
-    private var _alertMessage: MutableLiveData<String> = MutableLiveData()
-    val alertMessage: LiveData<String>
+    private var _toastMessage: MutableLiveData<String> = MutableLiveData()
+    val toastMessage: LiveData<String>
+        get() = _toastMessage
+
+    private var _alertMessage: MutableLiveData<Pair<String, AlertType>> = MutableLiveData()
+    val alertMessage: LiveData<Pair<String, AlertType>>
         get() = _alertMessage
 
     private var _whoseTurn: MutableLiveData<TicTacType> = MutableLiveData()
@@ -150,8 +155,12 @@ class BoardViewModel @Inject constructor(var boardData: BoardData,
                         if (possibleWinner != null && possibleWinner != TicTacType.UNSELECTED) {
                             // We have a winner
                             winner = possibleWinner!!
-                            _alertMessage.value =
-                                    resourceProvider.getString(R.string.wins, winner.toString())
+
+                            _alertMessage.value = Pair(
+                                    resourceProvider.getString(R.string.wins, winner.toString()),
+                                    AlertType.NEW_GAME
+                            )
+
                             when (winner) {
                                 TicTacType.X -> _xScore.value = _xScore.value?.plus(1)
                                 TicTacType.O -> _oScore.value = _oScore.value?.plus(1)
@@ -162,20 +171,23 @@ class BoardViewModel @Inject constructor(var boardData: BoardData,
                     }
                 }
                 else {
-                    _alertMessage.value = resourceProvider.getString(R.string.already_selected)
+                    _toastMessage.value = resourceProvider.getString(R.string.already_selected)
                 }
             }
             else {
-                _alertMessage.value = resourceProvider.getString(R.string.tie_game)
+                _alertMessage.value = Pair(resourceProvider.getString(R.string.tie_game),
+                                            AlertType.NEW_GAME)
             }
         }
         else {
             _alertMessage.value =
-                    resourceProvider.getString(R.string.start_a_new_game, winner.toString())
+                    Pair(resourceProvider.getString(R.string.start_a_new_game, winner.toString()),
+                            AlertType.NEW_GAME)
         }
 
         if (boardData.getMovesRemaining() == 0 && winner == TicTacType.UNSELECTED) {
-            _alertMessage.value = resourceProvider.getString(R.string.tie_game)
+            _alertMessage.value = Pair(resourceProvider.getString(R.string.tie_game),
+                    AlertType.NEW_GAME)
         }
 
         _directions.value =
